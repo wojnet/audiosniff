@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
+	Width="400" Height="250"
+    x:Class="AudioSniff.App.MainWindow"
+    Title="AudioSniff"
+	CanResize="False"
+	ExtendClientAreaToDecorationsHint="True"
+    ExtendClientAreaChromeHints="NoChrome"
+>
+	<Border Background="#333333">
+		<DockPanel>
+			<DockPanel Height="40" Background="#222222" LastChildFill="True" PointerPressed="TopBar_PointerPressed" DockPanel.Dock="Top">
+				<TextBlock
+					Text="AudioSniff.exe"
+					VerticalAlignment="Center"
+					Margin="10,0"
+					FontFamily="{DynamicResource PixelFont}"
+					FontSize="12"
+					DockPanel.Dock="Left"
+				/>
+
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
+					<Button Classes="TopbarButton" Click="Minimize_Click" Margin="0,0,3,0">
+						<TextBlock Text="-" Margin="0,2,0,0" FontFamily="{DynamicResource PixelFont}" FontSize="17" />
+					</Button>
+					<Button Classes="TopbarButton" Click="Close_Click">
+						<TextBlock Text="X" FontFamily="{DynamicResource PixelFont}" FontSize="13" />
+					</Button>
+				</StackPanel>
+			</DockPanel>
+			<StackPanel
+				Margin="10"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+			>
+				<Button
+					Classes="PixelButton"
+					Content="Start Recording"
+					FontSize="10"
+					Click="StartRecording_Click"
+				/>	
+			</StackPanel>
+		</DockPanel>	
+	</Border>
+</Window>

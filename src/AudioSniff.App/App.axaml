@@ -1,0 +1,78 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AudioSniff.App.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+	<Application.Styles>
+		<FluentTheme />
+
+		<!-- Pixel button style -->
+		<Style Selector="Button.PixelButton">
+			<Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Background" Value="#555555"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Padding" Value="10"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="BorderBrush" Value="#888888"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="CornerRadius" Value="0"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+					>
+						<ContentPresenter
+							Content="{TemplateBinding Content}"
+							FontSize="{TemplateBinding FontSize}"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Margin="{TemplateBinding Padding}"
+							FontFamily="{DynamicResource PixelFont}"
+						/>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+
+		<!-- Topbar button style -->
+		<Style Selector="Button.TopbarButton">
+			<Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Padding" Value="10"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border Background="{TemplateBinding Background}"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}">
+						<ContentPresenter
+							Content="{TemplateBinding Content}"
+							FontSize="{TemplateBinding FontSize}"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Margin="{TemplateBinding Padding}"/>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+	</Application.Styles>
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<FontFamily x:Key="PixelFont">
+				avares://AudioSniff.App/Assets/Fonts/PressStart2P-Regular.ttf#Press Start 2P Regular
+			</FontFamily>
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>
