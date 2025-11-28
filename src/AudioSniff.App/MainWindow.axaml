@@ -37,11 +37,12 @@
 				VerticalAlignment="Center"
 			>
 				<Button
+					Name="StartStopButton"
 					Classes="PixelButton"
-					Content="Start Recording"
+					Content="Record"
 					FontSize="10"
-					Click="StartRecording_Click"
-				/>	
+					Click="Recording_Click"
+				/>
 			</StackPanel>
 		</DockPanel>	
 	</Border>
