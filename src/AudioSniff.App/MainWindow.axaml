@@ -31,17 +31,32 @@
 					</Button>
 				</StackPanel>
 			</DockPanel>
-			<StackPanel
-				Margin="10"
-				HorizontalAlignment="Center"
-				VerticalAlignment="Center"
+			<StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Spacing="10"
+				Margin="0,40,0,0"
 			>
 				<Button
+					HorizontalAlignment="Center"
 					Name="StartStopButton"
 					Classes="PixelButton"
 					Content="Record"
-					FontSize="10"
+					FontSize="16"
 					Click="Recording_Click"
+				/>
+				<Button
+					HorizontalAlignment="Center"
+					Name="ChoosePathButton"
+					Classes="PixelButton"
+					Content="Choose Path"
+					FontSize="8"
+					Click="ChoosePath_Click"
+					/>
+				<TextBlock
+					Name="PathDisplay"
+					Text="The file will save on desktop"
+					HorizontalAlignment="Center"
+					TextAlignment="Center"
 				/>
 			</StackPanel>
 		</DockPanel>	
