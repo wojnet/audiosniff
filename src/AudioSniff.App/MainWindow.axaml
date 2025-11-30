@@ -2,8 +2,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
-	Width="400" Height="250"
+	xmlns:components="clr-namespace:AudioSniff.App.Components"
+    mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="400"
+	Width="400" Height="400"
     x:Class="AudioSniff.App.MainWindow"
     Title="AudioSniff"
 	CanResize="False"
@@ -19,6 +20,7 @@
 					Margin="10,0"
 					FontFamily="{DynamicResource PixelFont}"
 					FontSize="12"
+					Foreground="White"
 					DockPanel.Dock="Left"
 				/>
 
@@ -39,9 +41,10 @@
 				<Button
 					HorizontalAlignment="Center"
 					Name="StartStopButton"
-					Classes="PixelButton"
-					Content="Record"
-					FontSize="16"
+					Content="⬤"
+					Foreground="Red"
+					FontSize="32"
+					Cursor="Hand"
 					Click="Recording_Click"
 				/>
 				<Button
@@ -55,8 +58,15 @@
 				<TextBlock
 					Name="PathDisplay"
 					Text="The file will save on desktop"
+					Foreground="White"
 					HorizontalAlignment="Center"
 					TextAlignment="Center"
+				/>
+				<components:WaveformDisplay
+					Name="WaveformDisplay"
+					Width="350"
+					Height="100"
+					Margin="0,20,0,0"
 				/>
 			</StackPanel>
 		</DockPanel>	

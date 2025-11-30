@@ -1,17 +1,18 @@
+﻿using AudioSniff.App.Components;
 using AudioSniff.Core;
 using AudioSniff.Infrastructure;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using System;
-using System.Diagnostics;
 using System.IO;
 
 namespace AudioSniff.App;
 
 public partial class MainWindow : Window
 {
-    private IAudioRecorder recorder = new AudioRecorder();
+    private IAudioRecorder _recorder = new AudioRecorder();
+    private WaveformDisplay _waveformDisplay;
 
     private static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
     private string? filePath = null;
@@ -21,35 +22,50 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-    }
 
-    private void TopBar_PointerPressed(object sender, Avalonia.Input.PointerPressedEventArgs e)
-    {
-        this.BeginMoveDrag(e);
+        _waveformDisplay = this.FindControl<WaveformDisplay>("WaveformDisplay");
+
+        _recorder.SamplesAvailible += (s, samples) =>
+        {
+            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+            {
+                _waveformDisplay.AddSample(samples);
+            });
+        };
     }
 
     private void Recording_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        if (!recorder.IsRecording)
+        if (!_recorder.IsRecording)
         {
             if (filePath is null)
             {
-                recorder.Start(GetAutomaticFilePath());
+                _recorder.Start(GetAutomaticFilePath());
             }
             else
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
-                recorder.Start(filePath);
+                _recorder.Start(filePath);
             }
-            StartStopButton.Content = "Stop";
+            StartStopButton.Content = "■";
+            StartStopButton.Foreground = Avalonia.Media.Brushes.White;
         }
         else
         {
-            recorder.Stop();
-            StartStopButton.Content = "Record";
+            _recorder.Stop();
+            StartStopButton.Content = "⬤";
+            StartStopButton.Foreground = Avalonia.Media.Brushes.Red;
             filePath = null;
             PathDisplay.Text = "The file will save on desktop";
         }
+    }
+
+    private void OnSampleAvailible(float[] samples)
+    {
+        Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+        {
+            _waveformDisplay.AddSample(samples);
+        });
     }
 
     private async void ChoosePath_Click(object? sender, RoutedEventArgs e)
@@ -70,6 +86,11 @@ public partial class MainWindow : Window
             filePath = result.Path.LocalPath;
             PathDisplay.Text = filePath;
         }
+    }
+
+    private void TopBar_PointerPressed(object sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        this.BeginMoveDrag(e);
     }
 
     private void Close_Click(object? sender, RoutedEventArgs e)

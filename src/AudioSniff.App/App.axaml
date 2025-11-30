@@ -4,9 +4,17 @@
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
-	<Application.Styles>
-		<FluentTheme />
+	
 
+	<Application.Styles>
+		
+
+		<Style Selector="Button">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+	
 		<!-- Pixel button style -->
 		<Style Selector="Button.PixelButton">
 			<Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
